@@ -13,11 +13,15 @@ resources:
     branch: {{pipeline-resource-branch}}
 
 jobs:
-- name: job-build-and-verify
+- name: job-static-analysis
   plan:
   - get: source-code-resource
     trigger: true
   - get: pipeline-resource
-  - task: build-and-verify
+  - task: static-analysis
     file: pipeline-resource/tasks/maven-build.yml
-    input_mapping: {source-code: source-code-resource, pipeline: pipeline-resource}
+    input_mapping: 
+      - source-code: source-code-resource
+      - pipeline: pipeline-resource
+    params:
+      SONAR_ADDRESS: {{sonar-address}}

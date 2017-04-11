@@ -10,3 +10,7 @@ inputs:
 
 run:
   path: pipeline/tasks/maven-build.sh
+#  path: "mvn"
+#  args: ["-f", "source-code/pom.xml", "sonar:sonar", "-Dsonar.host.url=http://172.17.0.1:9000"]
+
+
