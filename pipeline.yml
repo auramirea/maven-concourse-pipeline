@@ -19,7 +19,7 @@ jobs:
     trigger: true
   - get: pipeline-resource
   - task: static-analysis
-    file: pipeline-resource/tasks/maven-build.yml
+    file: pipeline-resource/tasks/sonar-analysis.yml
     input_mapping: 
       - source-code: source-code-resource
       - pipeline: pipeline-resource
