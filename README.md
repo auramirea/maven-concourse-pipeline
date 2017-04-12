@@ -88,7 +88,7 @@ Now, we are all set to continue.
 
 `concourse-tutorial/maven-course-pipeline$ git checkout origin/01_build_and_verify`
 
-![Pipeline](assets/01_build_and_verify.png)
+![Pipeline](assets/pipeline1.png)
 
 ### 02 - [Use corporate Maven Repository](https://github.com/MarcialRosales/maven-concourse-pipeline/tree/02_use_corporate_maven_repo)
 
@@ -104,21 +104,24 @@ Now, we are all set to continue.
 `concourse-tutorial/maven-course-pipeline$ git checkout origin/04_install_built_artifact`
 
 
-### 20 - [Deploy, Verify and Promote Release candidate](https://github.com/MarcialRosales/maven-concourse-pipeline/tree/20_deploy_and_verify)
+### 05 - [Deploy, Verify and Promote Release candidate](https://github.com/MarcialRosales/maven-concourse-pipeline/tree/05_deploy_and_verify)
 
-`concourse-tutorial/maven-course-pipeline$ git checkout origin/20_deploy_and_verify`
+`concourse-tutorial/maven-course-pipeline$ git checkout origin/05_deploy_and_verify`
 
-![Pipeline](assets/20_deploy_and_verify.png)
-
-### 05 - [Feature branches and automatic branch tracking]()
+![Pipeline](assets/pipeline20.png)
 
 
+### 06 - [Deploy Surefire Reports](https://github.com/MarcialRosales/maven-concourse-pipeline/tree/06_deploy_surefire_reports)
+
+`concourse-tutorial/maven-course-pipeline$ git checkout origin/06_deploy_surefire_reports`
+
+![Pipeline](assets/pipeline30.png)
 
 ## Next Installments
 
-### Deploy Java Reports (Junit, Code Analysis, others) to a web server
+### Feature branches and automatic branch tracking
 
-### 40 - [Provision services (required by the application)](https://github.com/MarcialRosales/maven-concourse-pipeline/tree/40_provision_infra_with_terraform)
+### [Provision services (required by the application)](https://github.com/MarcialRosales/maven-concourse-pipeline/tree/40_provision_infra_with_terraform)
 
 ### Push to production if acceptance tests pass
 
