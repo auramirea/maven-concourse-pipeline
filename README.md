@@ -1,3 +1,4 @@
+
 # Static code analysis
 
 ## Purpose

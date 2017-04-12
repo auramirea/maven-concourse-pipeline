@@ -1,19 +1,86 @@
----
+resource_types:
+- name: artifactory
+  type: docker-image
+  source:
+    repository: pivotalservices/artifactory-resource
+
 resources:
 - name: source-code-resource
   type: git
   source:
     uri: {{source-code-resource-uri}}
     branch: {{source-code-resource-branch}}
+    private_key: {{github-private-key}}
+    branch: {{source-code-resource-branch}}
+
+- name: version-resource
+  type: semver
+  source:
+    driver: git
+    initial_version: 0.0.1
+    uri: {{source-code-resource-uri}} # convention over configuration = version file is on the version branch of the application's repo
+    private_key: {{github-private-key}}
+    branch: version
+    file: version
+
+- name: acceptance-test-resource
+  type: git
+  source:
+    uri: {{acceptance-test-resource-uri}}
+    private_key: {{github-private-key}}
+    branch: {{acceptance-test-resource-branch}}
 
 - name: pipeline-resource
   type: git
   source:
     uri: {{pipeline-resource-uri}}
     branch: {{pipeline-resource-branch}}
+    private_key: {{github-private-key}}
+
+- name: build-artifact-resource
+  type: artifactory
+  source:
+    endpoint: {{repo-uri}}
+    repository: {{repo-build-folder}}
+    regex: {{repo-app-regex}}
+    username: {{repo-username}}
+    password: {{repo-password}}
+    skip_ssl_verification: true
+
+- name: candidate-artifact-resource
+  type: artifactory
+  source:
+    endpoint: {{repo-uri}}
+    repository: {{repo-release-folder}}
+    regex: {{repo-app-regex}}
+    username: {{repo-username}}
+    password: {{repo-password}}
+    skip_ssl_verification: true
+
+- name: surefire-report-resource
+  type: artifactory
+  source:
+    endpoint: {{repo-uri}}
+    repository: {{repo-surefire-folder}}
+    regex: {{repo-surefire-regex}}
+    username: {{repo-username}}
+    password: {{repo-password}}
+    skip_ssl_verification: true
+
+- name: pcf-resource
+  type: cf
+  source:
+    api: {{cf-api}}
+    username: {{cf-username}}
+    password: {{cf-password}}
+    organization: {{cf-org}}
+    space: {{cf-space}}
+    skip_cert_check: false
+
 
 jobs:
 - name: job-static-analysis
+  serial: true
   plan:
   - get: source-code-resource
     trigger: true
@@ -25,3 +92,4 @@ jobs:
       - pipeline: pipeline-resource
     params:
       SONAR_ADDRESS: {{sonar-address}}
+

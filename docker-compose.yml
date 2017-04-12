@@ -32,3 +32,9 @@ sonarqube:
   image: sonarqube:6.3
   ports: ["9000:9000", "9092:9092"]
     
+
+artifactory:
+  image: jfrog-docker-registry.bintray.io/artifactory/artifactory-oss:latest
+  ports:
+    - "8081:8081"
+
